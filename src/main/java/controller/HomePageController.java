@@ -13,14 +13,15 @@ public class HomePageController {
     @FXML
     void btnMangeCustomersOnAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("..//view/CustomerManagerForm.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/CustomerManagerForm.fxml"))));
         stage.show();
 
     }
 
     @FXML
     void btnViewCustomerListOnAction(ActionEvent event) {
-
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(""))));
     }
 
 }
