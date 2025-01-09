@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#07294a" height="67.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" width="610.0" />
+      <Label alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="39.0" prefWidth="600.0" text="Customer Manager" textFill="#fffefe">
+         <font>
+            <Font name="Arial Bold" size="22.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtID" layoutX="70.0" layoutY="99.0" opacity="0.63" promptText="ID" />
+      <JFXTextField fx:id="txtName" layoutX="236.0" layoutY="99.0" opacity="0.63" promptText="name" />
+      <JFXTextField fx:id="txtTelNo" layoutX="235.0" layoutY="148.0" opacity="0.63" promptText="TelNo." />
+      <DatePicker fx:id="dtpDob" layoutX="71.0" layoutY="149.0" prefHeight="25.0" prefWidth="135.0" promptText="DOB" />
+      <TableView fx:id="tblCustomerManagre" layoutY="194.0" prefHeight="207.0" prefWidth="610.0">
+        <columns>
+          <TableColumn fx:id="tblID" prefWidth="100.00000250339508" text="ID" />
+          <TableColumn fx:id="tblName" prefWidth="162.66669464111328" text="Name" />
+            <TableColumn fx:id="tblDob" prefWidth="183.3333740234375" text="DOB" />
+            <TableColumn fx:id="tblTelNo" prefWidth="163.33334350585938" text="TelNo." />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="426.0" layoutY="112.0" onAction="#btnAddCustomerOnAction" prefHeight="25.0" prefWidth="53.0" styleClass="btn" stylesheets="@../css/style.css" text="ADD" />
+      <JFXButton layoutX="509.0" layoutY="112.0" onAction="#btnUpdateCustomerOnAction" styleClass="btn" stylesheets="@../css/style.css" text="Update" />
+      <JFXButton layoutX="510.0" layoutY="147.0" onAction="#btnSearchCustomerOnAction" prefHeight="25.0" prefWidth="57.0" styleClass="btn" stylesheets="@../css/style.css" text="Search" />
+      <JFXButton layoutX="427.0" layoutY="147.0" onAction="#btnDeleteCustomernAction" styleClass="btn" stylesheets="@../css/style.css" text="Delete" />
+   </children>
+</AnchorPane>
