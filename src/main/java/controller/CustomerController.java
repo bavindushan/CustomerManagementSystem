@@ -9,7 +9,9 @@ import java.util.List;
 public class CustomerController implements CustomerSrvices {
     @Override
     public boolean addCustomer(Customer customer) {
-       return DBConnection.getInstance().getConnection().add(customer);
+        boolean result = DBConnection.getInstance().getConnection().add(customer);
+        if (result) DBConnection.getInstance().writeToFile();
+        return result;
     }
 
     @Override
@@ -17,6 +19,7 @@ public class CustomerController implements CustomerSrvices {
         customer.setName(name);
         customer.setDob(dob);
         customer.setTelNo(telNo);
+        DBConnection.getInstance().writeToFile();
         return true;
     }
 
@@ -43,7 +46,8 @@ public class CustomerController implements CustomerSrvices {
 
     @Override
     public boolean deleteCustomer(String id) {
-        return DBConnection.getInstance().getConnection()
-                .removeIf(customer -> customer.getId().equals(id));
+        boolean result = DBConnection.getInstance().getConnection().removeIf(customer -> customer.getId().equals(id));
+        if(result) DBConnection.getInstance().writeToFile();
+        return result;
     }
 }
