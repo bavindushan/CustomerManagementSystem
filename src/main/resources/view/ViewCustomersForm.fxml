@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCustomerFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#06233f" height="55.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Label layoutX="174.0" layoutY="14.0" prefHeight="27.0" prefWidth="261.0" text="View Customer Details" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="23.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="274.0" layoutY="68.0" onAction="#btnReloadOnAction" styleClass="btn" stylesheets="@../css/style.css" text="Reload" />
+      <TableView fx:id="tblViewCustomerDetails" layoutX="-1.0" layoutY="111.0" prefHeight="289.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="tblId" prefWidth="102.6666589975357" text="ID" />
+          <TableColumn fx:id="tblName" prefWidth="174.66666412353516" text="Name" />
+            <TableColumn fx:id="tbldob" prefWidth="169.3333740234375" text="DOB" />
+            <TableColumn fx:id="tblTelno" prefWidth="153.33328247070312" text="TelNo." />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
