@@ -9,24 +9,31 @@ import java.util.List;
 public class CustomerController implements CustomerSrvices {
     @Override
     public boolean addCustomer(Customer customer) {
-        boolean result = DBConnection.getInstance().getConnection().add(customer);
-        if (result) DBConnection.getInstance().writeToFile();
-        return result;
-    }
-
-    @Override
-    public boolean updateCustomer(Customer customer, String name, LocalDate dob,String telNo) {
-        customer.setName(name);
-        customer.setDob(dob);
-        customer.setTelNo(telNo);
-        DBConnection.getInstance().writeToFile();
+        List<Customer> customers = DBConnection.getInstance().getAllCustomers();
+        customers.add(customer);
+        DBConnection.getInstance().writeAllCustomers(customers);
         return true;
     }
 
     @Override
+    public boolean updateCustomer(Customer customer, String name, LocalDate dob,String telNo) {
+        List<Customer> customers = DBConnection.getInstance().getAllCustomers();
+        for (Customer c : customers) {
+            if (c.getId().equals(customer.getId())) {
+                c.setName(name);
+                c.setDob(dob);
+                c.setTelNo(telNo);
+                DBConnection.getInstance().writeAllCustomers(customers);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public Customer searchCustomer(String id) {
-        return DBConnection.getInstance().getConnection()
-                .stream() //Converts the customerList into a stream to process its elements.
+        return DBConnection.getInstance().getAllCustomers()
+                .stream()
                 .filter(customer -> customer.getId().equals(id))
                 .findFirst()
                 .orElse(null);
@@ -41,13 +48,16 @@ public class CustomerController implements CustomerSrvices {
 
     @Override
     public List<Customer> getAll() {
-        return DBConnection.getInstance().getConnection();
+        return DBConnection.getInstance().getAllCustomers();
     }
 
     @Override
     public boolean deleteCustomer(String id) {
-        boolean result = DBConnection.getInstance().getConnection().removeIf(customer -> customer.getId().equals(id));
-        if(result) DBConnection.getInstance().writeToFile();
-        return result;
+        List<Customer> customers = DBConnection.getInstance().getAllCustomers();
+        boolean isRemoved = customers.removeIf(customer -> customer.getId().equals(id));
+        if (isRemoved) {
+            DBConnection.getInstance().writeAllCustomers(customers);
+        }
+        return isRemoved;
     }
 }

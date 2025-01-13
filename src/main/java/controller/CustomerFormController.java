@@ -48,21 +48,17 @@ public class CustomerFormController implements Initializable {
     private JFXTextField txtTelNo;
 
     private CustomerController customerController;
-    static int nextID;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerController = new CustomerController();
         setUpTableColumns();
         loadTable();
-        nextID=0;
         txtID.setText(genarateCustomerID());
     }
 
     @FXML
     void btnAddCustomerOnAction(ActionEvent event) {
-
-        nextID++;
 
         boolean addCustomer = customerController.addCustomer(new Customer(genarateCustomerID(), txtName.getText(), dtpDob.getValue(), txtTelNo.getText()));
 
@@ -169,7 +165,17 @@ public class CustomerFormController implements Initializable {
     }
     private String genarateCustomerID(){
 
-        return String.format("C%04d",nextID);
+        String lastID = DBConnection.getInstance().getLastCustomerID();
+        int lastIDNumber = 0;
+
+        try {
+            lastIDNumber = Integer.parseInt(lastID.substring(1)); // Extract the number part
+        } catch (NumberFormatException e) {
+            // Handle malformed ID gracefully and set it to 0
+            lastIDNumber = 0;
+        }
+
+        return String.format("C%04d", lastIDNumber + 1); // Increment and format as CXXXX
     }
 
 
